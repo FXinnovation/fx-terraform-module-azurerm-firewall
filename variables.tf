@@ -162,7 +162,7 @@ variable "network_rule_actions" {
   default     = ["Deny"]
 }
 
-variable "nat_rules" {
+variable "network_rules" {
   description = <<-DOCUMENTATION
   A list of list of map of options to apply. Map must support folowing structure:
     * name(required, string): Specifies the name of the rule.
