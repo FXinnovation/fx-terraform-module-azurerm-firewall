@@ -26,6 +26,11 @@ variable "tags" {
 # Firewall
 ###
 
+variable "firewall_exist" {
+  description = "Boolean flag which describes whether the firewall is already existing or not."
+  default     = false
+}
+
 variable "name" {
   description = "Specifies the names of the firewall.Changing this forces a new resource to be created."
   default     = ""
@@ -33,6 +38,7 @@ variable "name" {
 
 variable "zones" {
   description = "Specifies the availabilty zones in which the Azure firewall should be created."
+  default     = null
 }
 
 variable "firewall_tags" {
@@ -51,12 +57,12 @@ variable "ip_configurations" {
 # Firewall application rule
 ###
 
-variable "appilcation_rule_enabled" {
+variable "application_rule_enabled" {
   description = "Boolean flag which describes whether or not to enable the firewall application rule."
   default     = false
 }
 
-variable "application_rules_names" {
+variable "application_rule_names" {
   description = "Specifies the list of names of application rules collection which must be unique within the Firewall. Changing this forces a new resource to be created."
   type        = list(string)
   default     = [""]

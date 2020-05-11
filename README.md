@@ -18,12 +18,13 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| appilcation\_rule\_enabled | Boolean flag which describes whether or not to enable the firewall application rule. | `bool` | `false` | no |
 | application\_rule\_actions | The list of action of the rule which will be aplied to matching traffic. Possible values are `Allow` and `Deny`. | `list(string)` | <pre>[<br>  "Deny"<br>]</pre> | no |
+| application\_rule\_enabled | Boolean flag which describes whether or not to enable the firewall application rule. | `bool` | `false` | no |
+| application\_rule\_names | Specifies the list of names of application rules collection which must be unique within the Firewall. Changing this forces a new resource to be created. | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
 | application\_rule\_priorities | Specifies the list of priority of the rule collection. Possible values are between `100-65000`. | `list(number)` | <pre>[<br>  100<br>]</pre> | no |
 | application\_rules | A list of list of map of options to apply. Map must support the following structure:<br>  * name(required, string): The Name of the rule (e.g. TFTEST)<br>  * description(Optional, string): Specifies a description for the rule.<br>  * source\_addresses(required, list of string): A list of source IP addresses and/or IP range (e.g. ["10.23.72.178"])<br>  * fqdn\_tags(Optional, list of string): A list of FQDN tags. Possible values are `AppServiceEnvironment`, `AzureBackup`, `MicrosoftActiveProtectiveService`, `WindowsDiagnostics` and `WindowsUpdate`<br>  * target\_fqdns(Optional, list of string): A list of FQDNs (e.g. ["\*.google.com"])<br>  * protocol(Optional, list of map): A list of map of protocol to apply:<br>      * port(Optional, string): A port for the connection.<br>      * protocol(required, string): The type of the connection. Possible values are `Http`,`Https` and `Mssql`.<br>For example, see folder xxxx | `any` | `[]` | no |
-| application\_rules\_names | Specifies the list of names of application rules collection which must be unique within the Firewall. Changing this forces a new resource to be created. | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
 | enabled | Enable or disable module | `bool` | `true` | no |
+| firewall\_exist | Boolean flag which describes whether the firewall is already existing or not. | `bool` | `false` | no |
 | firewall\_tags | Tags which will be associated to the firewall resource only. | `map` | `{}` | no |
 | ip\_configurations | One or more ip configuration blocks. `NOTE`: The subnet used for the firewall must have the name `AzureFirewallSubnet` and subnet mask must be at least /26. And at least one and only one `ip_configuration` block may contain a `subnet_id`. | `list(object({ name = string, subnet_id = string, public_ip_address_id = string }))` | <pre>[<br>  null<br>]</pre> | no |
 | name | Specifies the names of the firewall.Changing this forces a new resource to be created. | `string` | `""` | no |
@@ -40,7 +41,7 @@
 | resource\_group\_location | Specifies the supported Azure location where the resources exist. Changing this forces a new resource to be created. | `string` | `"eastus"` | no |
 | resource\_group\_name | The name of the resource group in which to create the resources in this module. Changing this forces a new resource to be created. | `string` | `""` | no |
 | tags | Tags shared by all resources of this module. Will be merged with any other specific tags by resource | `map` | `{}` | no |
-| zones | Specifies the availabilty zones in which the Azure firewall should be created. | `any` | n/a | yes |
+| zones | Specifies the availabilty zones in which the Azure firewall should be created. | `any` | `null` | no |
 
 ## Outputs
 
