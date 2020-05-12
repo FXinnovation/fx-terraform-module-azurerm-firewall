@@ -9,8 +9,7 @@ resource "azurerm_resource_group" "example" {
   location = "West Europe"
 
   tags = {
-    Owner   = "Terraform"
-    EndDate = "2020-05-15"
+    managed_by = "Terraform"
   }
 }
 

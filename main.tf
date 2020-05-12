@@ -27,8 +27,6 @@ resource "azurerm_firewall" "this" {
       Terraform = "true"
     },
   )
-
-
 }
 
 
@@ -65,7 +63,6 @@ resource "azurerm_firewall_application_rule_collection" "this" {
       }
     }
   }
-
 }
 
 ###
@@ -120,7 +117,6 @@ resource "azurerm_firewall_network_rule_collection" "this" {
       destination_addresses = lookup(rule.value, "destination_addresses", null)
       destination_ports     = lookup(rule.value, "destination_ports", null)
       protocols             = lookup(rule.value, "protocols", null)
-
     }
   }
 }
