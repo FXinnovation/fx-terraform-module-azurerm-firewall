@@ -27,12 +27,12 @@ variable "tags" {
 ###
 
 variable "firewall_exist" {
-  description = "Boolean flag which describes whether the firewall is already existing or not."
+  description = "Boolean flag which describes whether the Azure firewall is already existing ot not."
   default     = false
 }
 
 variable "name" {
-  description = "Specifies the names of the firewall.Changing this forces a new resource to be created."
+  description = "Specifies the names of the firewall. Changing this forces a new resource to be created."
   default     = ""
 }
 
@@ -69,13 +69,13 @@ variable "application_rule_names" {
 }
 
 variable "application_rule_priorities" {
-  description = "Specifies the list of priority of the rule collection. Possible values are between `100-65000`."
+  description = "Specifies the list of priorities of the application rule collection. Possible values are between `100-65000`."
   type        = list(number)
   default     = [100]
 }
 
 variable "application_rule_actions" {
-  description = "The list of action of the rule which will be aplied to matching traffic. Possible values are `Allow` and `Deny`."
+  description = "The list of action of the rules which will be aplied to matching traffic. Possible values are `Allow` and `Deny`."
   type        = list(string)
   default     = ["Deny"]
 }
@@ -89,9 +89,9 @@ variable "application_rules" {
     * fqdn_tags(Optional, list of string): A list of FQDN tags. Possible values are `AppServiceEnvironment`, `AzureBackup`, `MicrosoftActiveProtectiveService`, `WindowsDiagnostics` and `WindowsUpdate`
     * target_fqdns(Optional, list of string): A list of FQDNs (e.g. ["*.google.com"])
     * protocol(Optional, list of map): A list of map of protocol to apply:
-        * port(Optional, string): A port for the connection.
+        * port(Optional, number): A port for the connection.
         * protocol(required, string): The type of the connection. Possible values are `Http`,`Https` and `Mssql`.
-  For example, see folder xxxx
+  For example, see folder examples/default
   DOCUMENTATION
   type        = any
   default     = []
@@ -113,7 +113,7 @@ variable "nat_rule_names" {
 }
 
 variable "nat_rule_priorities" {
-  description = "The list which specifies the priority of the rule collection. Possible values are between `100-6500`."
+  description = "The list which specifies the priorities of the rule collection. Possible values are between `100-6500`."
   type        = list(number)
   default     = [101]
 }
@@ -131,11 +131,11 @@ variable "nat_rules" {
     * description(Optional, string): Specifies a description for the rule.
     * destination_addresses(required, list of string): A list of destination IP addesses and/or IP ranges.
     * destination_ports(required, list of string): A list of destination ports.
-    * protocols(required, list of string): A list of protocols. Posible values are `Any`, `ICMP`, `TCP` and `UDP`. If `action` is `Dnat`, protocols can only be `TCp` and `UDp`.
+    * protocols(required, list of numbers): A list of protocols. Posible values are `Any`, `ICMP`, `TCP` and `UDP`. If `action` is `Dnat`, protocols can only be `TCp` and `UDp`.
     * source_addresses(required, list of string): A list of source IP addresses and/or IP ranges.
     * translated_address(required, string): The address of the service behind the firewall.
-    * translated_port(required, string): The port of the service behind the firewall.
-  For example, see folder xxxx
+    * translated_port(required, number): The port of the service behind the firewall.
+  For example, see folder examples/default
   DOCUMENTATION
   type        = any
   default     = []
@@ -175,9 +175,9 @@ variable "network_rules" {
     * description(Optional, string): Specifies a description for the rule.
     * source_addresses(required, list of string): A list of source IP addresses and/or IP ranges.
     * destination_addresses(required, list of string): A list of destination IP addesses and/or IP ranges.
-    * destination_ports(required, list of string): A list of destination ports.
+    * destination_ports(required, list of numbers): A list of destination ports.
     * protocols(required, list of string): A list of protocols. Posible values are `Any`, `ICMP`, `TCP` and `UDP`.
-  For example, see folder xxxx
+  For example, see folder examples/default
   DOCUMENTATION
   type        = any
   default     = []

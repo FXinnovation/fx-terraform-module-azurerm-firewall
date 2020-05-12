@@ -41,7 +41,7 @@ resource "azurerm_firewall_application_rule_collection" "this" {
 
   name                = var.application_rule_names[count.index]
   resource_group_name = var.resource_group_name
-  azure_firewall_name = var.firewall_exist ? data.azurerm_firewall.this.name : azurerm_firewall.this[0].name
+  azure_firewall_name = var.firewall_exist ? data.azurerm_firewall.this[0].name : azurerm_firewall.this[0].name
   priority            = element(var.application_rule_priorities, count.index)
   action              = element(var.application_rule_actions, count.index)
 
@@ -77,7 +77,7 @@ resource "azurerm_firewall_nat_rule_collection" "this" {
 
   name                = var.nat_rule_names[count.index]
   resource_group_name = var.resource_group_name
-  azure_firewall_name = var.firewall_exist ? data.azurerm_firewall.this.name : azurerm_firewall.this[0].name
+  azure_firewall_name = var.firewall_exist ? data.azurerm_firewall.this[0].name : azurerm_firewall.this[0].name
   priority            = element(var.nat_rule_priorities, count.index)
   action              = element(var.nat_rule_actions, count.index)
 
@@ -106,7 +106,7 @@ resource "azurerm_firewall_network_rule_collection" "this" {
 
   name                = var.network_rule_names[count.index]
   resource_group_name = var.resource_group_name
-  azure_firewall_name = var.firewall_exist ? data.azurerm_firewall.this.name : azurerm_firewall.this[0].name
+  azure_firewall_name = var.firewall_exist ? data.azurerm_firewall.this[0].name : azurerm_firewall.this[0].name
   priority            = element(var.network_rule_priorities, count.index)
   action              = element(var.network_rule_actions, count.index)
 

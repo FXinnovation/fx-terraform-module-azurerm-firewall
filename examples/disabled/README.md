@@ -1,6 +1,6 @@
-# Default example
+# Disabled example
 
-This will create basic resources related to Azure firewall.
+This will create any resource.
 
 ## Usage
 ```
@@ -33,9 +33,5 @@ terraform destroy
 | tenant\_id | n/a | `string` | n/a | yes |
 
 ## Outputs
-
-| Name | Description |
-|------|-------------|
-| id | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
