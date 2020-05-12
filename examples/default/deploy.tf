@@ -98,7 +98,7 @@ resource "azurerm_windows_virtual_machine" "example" {
 }
 
 module "example" {
-  source = "../"
+  source = "../.."
 
   name                    = "tftest${random_string.this.result}"
   resource_group_name     = azurerm_resource_group.example.name
