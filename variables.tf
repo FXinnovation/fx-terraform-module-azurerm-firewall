@@ -62,6 +62,11 @@ variable "application_rule_enabled" {
   default     = false
 }
 
+variable "application_rule_count" {
+  description = "Number of firewall application rules collection to create. Setting this value to 0 will not deploy any application rule collection related to the firewall."
+  default     = 1
+}
+
 variable "application_rule_names" {
   description = "Specifies the list of names of application rules collection which must be unique within the Firewall. Changing this forces a new resource to be created."
   type        = list(string)
@@ -83,7 +88,7 @@ variable "application_rule_actions" {
 variable "application_rules" {
   description = <<-DOCUMENTATION
   A list of list of map of options to apply. Map must support the following structure:
-    * name(required, string): The Name of the rule (e.g. TFTEST)
+    * name(required, string): The Name of the rule.
     * description(Optional, string): Specifies a description for the rule.
     * source_addresses(required, list of string): A list of source IP addresses and/or IP range (e.g. ["10.23.72.178"])
     * fqdn_tags(Optional, list of string): A list of FQDN tags. Possible values are `AppServiceEnvironment`, `AzureBackup`, `MicrosoftActiveProtectiveService`, `WindowsDiagnostics` and `WindowsUpdate`
@@ -93,7 +98,7 @@ variable "application_rules" {
         * protocol(required, string): The type of the connection. Possible values are `Http`,`Https` and `Mssql`.
   For example, see folder examples/default
   DOCUMENTATION
-  type        = any
+  type        = list
   default     = []
 }
 
@@ -104,6 +109,11 @@ variable "application_rules" {
 variable "nat_rule_enabled" {
   description = "Boolean flag which describes whether or not enable firewall nat rules."
   default     = false
+}
+
+variable "nat_rule_count" {
+  description = "Number of firewall NAT rules collection to create. Setting this value to 0 will not deploy any NAT rule collection related to the firewall."
+  default     = 1
 }
 
 variable "nat_rule_names" {
@@ -126,18 +136,18 @@ variable "nat_rule_actions" {
 
 variable "nat_rules" {
   description = <<-DOCUMENTATION
-  A list of list of map of options to apply. Map must support folowing structure:
+  A list of list of map of options to apply. Map must support following structure:
     * name(required, string): Specifies the name of the rule.
     * description(Optional, string): Specifies a description for the rule.
     * destination_addresses(required, list of string): A list of destination IP addesses and/or IP ranges.
     * destination_ports(required, list of string): A list of destination ports.
-    * protocols(required, list of numbers): A list of protocols. Posible values are `Any`, `ICMP`, `TCP` and `UDP`. If `action` is `Dnat`, protocols can only be `TCp` and `UDp`.
+    * protocols(required, list of numbers): A list of protocols. Possible values are `Any`, `ICMP`, `TCP`,`UDP`. If `action` is `Dnat`, protocols can only be `TCp` ,`UDp`.
     * source_addresses(required, list of string): A list of source IP addresses and/or IP ranges.
     * translated_address(required, string): The address of the service behind the firewall.
     * translated_port(required, number): The port of the service behind the firewall.
   For example, see folder examples/default
   DOCUMENTATION
-  type        = any
+  type        = list
   default     = []
 }
 
@@ -148,6 +158,11 @@ variable "nat_rules" {
 variable "network_rule_enabled" {
   description = "Boolean flag which describes whether or not enable firewall network rules."
   default     = false
+}
+
+variable "network_rule_count" {
+  description = "Number of network rule collection to create. Setting this value to 0 will not deploy any network rule collection related to the firewall."
+  default     = 1
 }
 
 variable "network_rule_names" {
@@ -170,15 +185,15 @@ variable "network_rule_actions" {
 
 variable "network_rules" {
   description = <<-DOCUMENTATION
-  A list of list of map of options to apply. Map must support folowing structure:
+  A list of list of map of options to apply. Map must support following structure:
     * name(required, string): Specifies the name of the rule.
     * description(Optional, string): Specifies a description for the rule.
     * source_addresses(required, list of string): A list of source IP addresses and/or IP ranges.
     * destination_addresses(required, list of string): A list of destination IP addesses and/or IP ranges.
     * destination_ports(required, list of numbers): A list of destination ports.
-    * protocols(required, list of string): A list of protocols. Posible values are `Any`, `ICMP`, `TCP` and `UDP`.
+    * protocols(required, list of string): A list of protocols. Possible values are `Any`, `ICMP`, `TCP`, `UDP`.
   For example, see folder examples/default
   DOCUMENTATION
-  type        = any
+  type        = list
   default     = []
 }

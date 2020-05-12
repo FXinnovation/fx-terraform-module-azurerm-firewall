@@ -112,6 +112,7 @@ module "example" {
   ]
 
   application_rule_enabled    = true
+  application_rule_count      = 2
   application_rule_names      = ["tftest${random_string.this.result}", "tftest${random_string.this.result}1"]
   application_rule_priorities = [100, 101]
   application_rule_actions    = ["Allow"]
@@ -148,6 +149,7 @@ module "example" {
   ]
 
   nat_rule_enabled    = true
+  nat_rule_count      = 1
   nat_rule_names      = ["tftest${random_string.this.result}2"]
   nat_rule_priorities = [200]
   nat_rule_actions    = ["Dnat"]
@@ -167,6 +169,7 @@ module "example" {
   ]
 
   network_rule_enabled    = true
+  network_rule_count      = 1
   network_rule_names      = ["tftest${random_string.this.result}3"]
   network_rule_priorities = [300]
   network_rule_actions    = ["Allow"]

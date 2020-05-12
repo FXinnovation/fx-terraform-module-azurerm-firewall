@@ -1,4 +1,4 @@
-0.0.1 /2020-05-12
+0.1.0
 =================
 * feat: Adds Azure Firewall.
 * feat: Adds firewall application rule collection.

@@ -35,7 +35,7 @@ resource "azurerm_firewall" "this" {
 ###
 
 resource "azurerm_firewall_application_rule_collection" "this" {
-  count = var.enabled && var.application_rule_enabled ? length(var.application_rule_names) : 0
+  count = var.enabled && var.application_rule_enabled ? var.application_rule_count : 0
 
   name                = var.application_rule_names[count.index]
   resource_group_name = var.resource_group_name
@@ -70,7 +70,7 @@ resource "azurerm_firewall_application_rule_collection" "this" {
 ###
 
 resource "azurerm_firewall_nat_rule_collection" "this" {
-  count = var.enabled && var.nat_rule_enabled ? length(var.nat_rule_names) : 0
+  count = var.enabled && var.nat_rule_enabled ? var.nat_rule_count : 0
 
   name                = var.nat_rule_names[count.index]
   resource_group_name = var.resource_group_name
@@ -99,7 +99,7 @@ resource "azurerm_firewall_nat_rule_collection" "this" {
 ###
 
 resource "azurerm_firewall_network_rule_collection" "this" {
-  count = var.enabled && var.network_rule_enabled ? length(var.nat_rule_names) : 0
+  count = var.enabled && var.network_rule_enabled ? var.nat_rule_count : 0
 
   name                = var.network_rule_names[count.index]
   resource_group_name = var.resource_group_name
